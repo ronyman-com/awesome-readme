@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department of Home Affairs</title>
+    <link rel="stylesheet" href="https://www.homeaffairs.gov.au/AssetLibrary/dist/css/app.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style type="text/css">
+        #ribbon-wrapper {
+            display: none;
+        }
+        .app-loading {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="authWrapper" class="">
+        <!-- ===== ribbon (supressed for draft reviewers) ============================================ -->
+        <div id="ribbon-wrapper" class="ms-dialogHidden">
+            <div>
+                <div id="s4-ribbonrow" style="visibility:hidden;display:none"></div>
+            </div>
+            <div id="notificationArea" class="ms-notif-box"></div>
+            <div id="DeltaPageStatusBar">
+                <div id="pageStatusBar"></div>
+            </div>
+        </div>
+
+        <!-- ===== main scrolling body =============================================================== -->
+        <div id="s4-workspace" class="js-portfolio-site">
+            <ul class="skip-links">
+                <li><button id="skip-to-nav">Skip to navigation</button></li>
+                <li><a href="#contentBox" id="skip-to-main">Skip to main content</a></li>
+            </ul>
+            <div class="app-loading">
+                <div class="spinner">
+                    <div class="double-bounce1"></div>
+                    <div class="double-bounce2"></div>
+                </div>
+                <span class="sr-only">Loading</span>
+            </div>
+            <div id="s4-bodyContainer">
+                <!-- ===== title row ================================================================= -->
+                <div id="s4-titlerow" class="ms-dialogHidden ms-edit-overlay">
+                    <!-- Start alert element -->
+                    <div class="alert-container hidden">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    <div class="header-alert-content"></div>
+                                </div>
+                                <div class="pull-right header-alert-hide-btn-wrapper">
+                                    <a href="#" class="header-alert-hide-btn">
+                                        <i class="material-icons">&#xe5cd;</i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Header -->
+                    <div class="header-menu-horizontal">
+                        <div class="container">
+                            <header>
+                                <!-- Start element: menu -->
+                                <div class="nav-overlay"></div>
+                                <nav>
+                                    <button type="button" class="menu-open-btn">
+                                        <svg width="22px" height="14px" viewBox="0 0 22 14" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <g id="menu-icon" fill="#FFFFFF" fill-rule="nonzero">
+                                                    <path d="M21.2377,6.468 L0.7623,6.468 C0.4389,6.468 0.1771,6.706 0.1771,7 C0.1771,7.294 0.4389,7.532 0.7623,7.532 L21.2377,7.532 C21.5611,7.532 21.8229,7.294 21.8229,7 C21.8229,6.706 21.5611,6.468 21.2377,6.468 Z"
+                                                        id="Shape1"></path>
+                                                    <path d="M21.2377,12.787 L0.7623,12.787 C0.4389,12.787 0.1771,13.025 0.1771,13.319 C0.1771,13.613 0.4389,13.851 0.7623,13.851 L21.2377,13.851 C21.5611,13.851 21.8229,13.613 21.8229,13.319 C21.8229,13.025 21.5611,12.787 21.2377,12.787 Z"
+                                                        id="Shape2"></path>
+                                                    <path d="M0.7623,1.214 L21.2377,1.214 C21.5611,1.214 21.8229,0.976 21.8229,0.682 C21.8229,0.388 21.5611,0.15 21.2377,0.15 L0.7623,0.15 C0.4389,0.15 0.1771,0.388 0.1771,0.682 C0.1771,0.976 0.4389,1.214 0.7623,1.214 Z"
+                                                        id="Shape3"></path>
+                                                </g>
+                                            </g>
+                                        </svg>
+                                        <span id="ctlMenuLabel" class="sr-only">Menu</span>
+                                    </button>
+                                    <div class="side-navigation">
+                                        <div class="control-row">
+                                            <button type="button" class="menu-close-btn">
+                                                <i class="material-icons">&#xE5CD;</i>
+                                                <span id="ctlMenuLabel2">Menu</span>
+                                            </button>
+                                            <a href="/" class="menu-portfolio-btn">
+                                                <span class="icon-arrow-left"></span>
+                                                <div class="text" id="ctlMenuHomeLabel">Home Affairs
+                                                    <br class="hidden visible-xs" />Portfolio</div>
+                                            </a>
+                                        </div>
+                                        <ul class="menu">
+                                            <!-- Menu items would go here -->
+                                        </ul>
+                                    </div>
+                                </nav>
+
+                                <div id="top" class="logo-container">
+                                    <a href="/">
+                                        <img src="https://www.homeaffairs.gov.au/AssetLibrary/dist/assets/images/logo-dark.png" alt="Australian Government - Department of Home Affairs" class="logo hidden-print"
+                                            title="home">
+                                    </a>
+                                </div>
+
+                                <!-- Start element: search -->
+                                <div class="search-container">
+                                    <button type="button" class="search-btn" aria-label="search">
+                                        <span class="icon-search"></span>
+                                    </button>
+                                </div>
+
+                                <!-- Start top links -->
+                                <div class="toplinks-container hidden-print">
+                                    <ul class="toplinks-content">
+                                        <li>
+                                            <a href="https://online.immi.gov.au/ola/app" target="_blank"> 
+                                                <span class="fa fa-user"></span>ImmiAccount
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="https://immi.homeaffairs.gov.au/visas/already-have-a-visa/check-visa-details-and-conditions/overview" target="_blank"> 
+                                                <span class="fa fa-vcard"></span> Visa Entitlement Verification Online (VEVO)
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </header>
+
+                            <!-- Start element: horizontal menu -->
+                            <nav class="menu-horizontal">
+                                <ul class="menu-horizontal">
+                                    <!-- Horizontal menu items would go here -->
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== main content ============================================================== -->
+                <div id="contentBox"> 
+                    <main>
+                        <div id="DeltaPlaceHolderMain">
+                            <div id="tab-pane-1" class="tab-pane fade in active">
+                                <div class="home-page">
+                                    <!-- Banner Section -->
+                                    <div class="banner-bg">
+                                        <div class="container">
+                                            <div class="banner-search search-overlay-content">
+                                                <h1 class="apply-direction">
+                                                    Department of Home Affairs
+                                                </h1>
+
+                                                <div class="row">
+                                                    <div class="col-sm-10 col-sm-offset-1">
+                                                        <div class="search-form">
+                                                            <label for="search" class="sr-only">Search</label>
+                                                            <input type="search" name="search" class="search-input" placeholder="Search">
+                                                            <button type="button" class="search-submit" aria-label="Search">
+                                                                <span class="icon-search"></span>
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="search-metadata">
+                                                            <span id="ctlSearchPopularLabel2">
+                                                                Popular searches
+                                                            </span>
+                                                            <ul class="popular-searches">
+                                                                <li><a href="#">Visa applications</a></li>
+                                                                <li><a href="#">Border restrictions</a></li>
+                                                                <li><a href="#">Citizenship test</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Topics section -->
+                                    <div class="container">
+                                        <h2 class="sr-only">Topics</h2>
+                                        <div class="tiles-container">
+                                            <div class="tiles-row">
+                                                <a href="https://immi.homeaffairs.gov.au" class="tile">
+                                                    <div class="tile-content">
+                                                        <h3>Immigration and citizenship</h3>
+                                                        <p>Find out about Australian visas, immigration and citizenship</p>
+                                                    </div>
+                                                    <span class="icon-arrow-right"></span>
+                                                </a>
+                                                <a href="https://www.abf.gov.au" class="tile">
+                                                    <div class="tile-content">
+                                                        <h3>Travel and crossing the border</h3>
+                                                        <p>Find out what you need to know about entering and leaving Australia</p>
+                                                    </div>
+                                                    <span class="icon-arrow-right"></span>
+                                                </a>
+                                                <a href="https://www.abf.gov.au" class="tile">
+                                                    <div class="tile-content">
+                                                        <h3>Import, export, buying online</h3>
+                                                        <p>Find out how to get your goods into or out of Australia</p>
+                                                    </div>
+                                                    <span class="icon-arrow-right"></span>
+                                                </a>
+                                            </div>
+                                            <div class="tiles-row">
+                                                <a href="/about-us/our-portfolios/national-security" class="tile">
+                                                    <div class="tile-content">
+                                                        <h3>National security</h3>
+                                                        <p>Discover how you can support our efforts to keep Australia safe</p>
+                                                    </div>
+                                                    <span class="icon-arrow-right"></span>
+                                                </a>
+                                                <a href="/about-us/our-portfolios/identity-security" class="tile">
+                                                    <div class="tile-content">
+                                                        <h3>Identity security</h3>
+                                                        <p>We coordinate efforts to support Australia's identity security initiatives</p>
+                                                    </div>
+                                                    <span class="icon-arrow-right"></span>
+                                                </a>
+                                                <a href="https://www.cisc.gov.au/" class="tile" target="_blank">
+                                                    <div class="tile-content">
+                                                        <h3>CISC</h3>
+                                                        <p>Learn about the Cyber and Infrastructure Security Centre (CISC)</p>
+                                                    </div>
+                                                    <span class="icon-arrow-right"></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Portfolio functions -->
+                                    <div class="portfolio-functions">
+                                        <div class="container">
+                                            <h2 class="portfolio-functions-title">Portfolio functions</h2>
+                                        </div>
+                                        <div class="portfolio-functions-slider">
+                                            <div class="portfolio-functions-list level1">
+                                                <a href="/about-us/our-portfolios/national-security" class="portfolio-function">
+                                                    <div class="portfolio-function-icon">
+                                                        <i class="fa fa-shield"></i>
+                                                    </div>
+                                                    <div class="portfolio-function-content">
+                                                        <h3>National Security</h3>
+                                                        <p>Protecting Australia from national security threats</p>
+                                                    </div>
+                                                </a>
+                                                <a href="/about-us/our-portfolios/emergency-management" class="portfolio-function">
+                                                    <div class="portfolio-function-icon">
+                                                        <i class="fa fa-life-ring"></i>
+                                                    </div>
+                                                    <div class="portfolio-function-content">
+                                                        <h3>Emergency Management</h3>
+                                                        <p>Coordinating national efforts to prepare for, respond to and recover from emergencies</p>
+                                                    </div>
+                                                </a>
+                                                <a href="https://immi.homeaffairs.gov.au" class="portfolio-function">
+                                                    <div class="portfolio-function-icon">
+                                                        <i class="fa fa-passport"></i>
+                                                    </div>
+                                                    <div class="portfolio-function-content">
+                                                        <h3>Immigration</h3>
+                                                        <p>Managing migration and citizenship programs</p>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="pull-right slide-controls news-slide-controls">
+                                                <a aria-label="Previous" class="prevArrow" href="#">
+                                                    <span class="icon-arrow-left"></span>
+                                                </a>
+                                                <a aria-label="Next" class="nextArrow" href="#">
+                                                    <span class="icon-arrow-right"></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Promotional Pages -->
+                                    <div class="promotional-pages section">
+                                        <div class="container">
+                                            <div class="flex"> 
+                                                <a class="iconed-tile" href="/help-and-support/departmental-forms/online-forms/border-watch" target="_blank">
+                                                    <span class="tile-icon" aria-hidden="false"><i class="fa fa-flag"></i></span>
+                                                    <span class="tile-content">
+                                                        <span class="h3">Border Watch - make a report</span>
+                                                        <span>If it doesn't feel right, flag it anonymously with Border Watch. Report suspicious immigration, customs and border related activity.</span>
+                                                    </span>
+                                                    <span class="icon-arrow-right" aria-hidden="false"></span>
+                                                </a> 
+                                                <a class="iconed-tile" href="https://www.nationalsecurity.gov.au/" target="_blank">
+                                                    <span class="tile-icon" aria-hidden="false"><i class="fa fa-mobile"></i></span>
+                                                    <span class="tile-content">
+                                                        <span class="h3">National Security Hotline</span>
+                                                        <span>If it doesn't add up, speak up. Call National Security Hotline.</span>
+                                                    </span>
+                                                    <span class="icon-arrow-right" aria-hidden="false"></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- News and Updates -->
+                                    <div class="news-updates">
+                                        <div class="container">
+                                            <h2>News and updates</h2>
+                                            <div class="news-items flex">
+                                                <div class="main-item hidden-xs hidden-sm">
+                                                    <div class="news-item">
+                                                        <div class="news-image">
+                                                            <img src="https://www.homeaffairs.gov.au/news-subsite/PublishingImages/immiaccount[1].jpg" alt="News image">
+                                                        </div>
+                                                        <div class="news-content">
+                                                            <span class="news-source">Immi</span>
+                                                            <h3 class="news-title">Update to ImmiAccount — new online services for paper-based Parent visa applications</h3>
+                                                            <p class="news-summary">We've introduced new online services to support Parent visa applicants with paper-based applications.</p>
+                                                            <span class="news-date">24/04/2025</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="secondary-items">
+                                                    <div class="news-item">
+                                                        <div class="news-content">
+                                                            <span class="news-source">OMARA</span>
+                                                            <h3 class="news-title">11 migration agents sanctioned since 1 July 2024</h3>
+                                                            <span class="news-date">31/03/2025</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="news-item">
+                                                        <div class="news-content">
+                                                            <span class="news-source">CISC</span>
+                                                            <h3 class="news-title">One year of the refreshed Organisational Resilience HealthCheck Tool!</h3>
+                                                            <span class="news-date">18/03/2025</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="archive-link-container">
+                                                <a class="archive-link" href="#">See all news <span class="icon-arrow-right" aria-hidden="false"></span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Other Websites -->
+                                    <div class="other-websites">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <div class="container">
+                                                    <h2>Our other websites</h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="styled-hover-links section">
+                                            <ul class="list">
+                                                <li> 
+                                                    <a class="item-link external" target="_blank" href="https://www.disasterassist.gov.au/">Disaster Assist</a> 
+                                                    <div class="box-container"> 
+                                                        <img class="background-image" src="https://www.homeaffairs.gov.au/PublishingImages/Other%20Websites/Disaster-assist-website.jpg" alt="Website Image" aria-hidden="true" />
+                                                        <div class="box-content-wrapper">
+                                                            <div class="box-content">
+                                                                <p class="box-title">disasterassist.gov.au</p>
+                                                                <div class="box-description"> 
+                                                                    <span>Find out how we assist Australians affected by natural disasters in Australia and overseas.</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li> 
+                                                    <a class="item-link external" target="_blank" href="https://www.harmony.gov.au/">Harmony Week</a> 
+                                                    <div class="box-container"> 
+                                                        <img class="background-image" src="https://www.homeaffairs.gov.au/PublishingImages/Other%20Websites/Harmony-week-website.jpg" alt="Website Image" aria-hidden="true" /> 
+                                                        <div class="box-content-wrapper">
+                                                            <div class="box-content">
+                                                                <p class="box-title">harmonyday.gov.au</p>
+                                                                <div class="box-description"> 
+                                                                    <span>Harmony Week celebrates Australia's cultural diversity. It's about inclusiveness, respect and a sense of belonging for everyone.</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <!-- Agencies Footer -->
+                                    <div class="agencies-footer section">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <h2>Agencies</h2>
+                                                </div>
+                                            </div>
+                                            <div class="row logo-row">
+                                                <div class="col-xs-6 col-sm-6">
+                                                    <div class="agency-logo">
+                                                        <a href="https://www.abf.gov.au/" target="_blank"> 
+                                                            <img src="https://www.homeaffairs.gov.au/PublishingImages/Agencies/ABF_Logo.svg" alt="Australian Border Force">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-6 col-sm-6">
+                                                    <div class="agency-logo">
+                                                        <a href="https://nema.gov.au/" target="_blank"> 
+                                                            <img src="https://www.homeaffairs.gov.au/PublishingImages/Agencies/nema-logo-2025.jpg" alt="National Emergency Management Agency">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+                
+                <!-- ===== footer ==================================================================== -->
+                <div class="footer-container ms-edit-overlay noindex">
+                    <footer>
+                        <!-- ===== feedback control ======== -->
+                        <div class="container">
+                            <div class="footer-feedback">
+                                <div class="row footer-feedback-row">
+                                    <div class="col-xs-4">
+                                        <a class="feedback-link" href="#" id="ctlTaskbarFeedbackLabel">Tell us what you think of this page <i class="fa fa-comment"></i></a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <span id="ctlPageModifiedLabel">Last updated:</span>
+                                        <span id="pageModified">
+                                            24/04/2025 14:30
+                                        </span>
+                                    </div>
+                                    <div class="col-xs-4 text-right">
+                                        <div class="print-link hidden-print">
+                                            <a href="#" onclick="window.print();return false;" id="ctlTaskbarPrintLabel">Print this page <i class="fa fa-print"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section footer-links-top">
+                            <div class="container">
+                                <div class="row with-separator">
+                                    <div class="col-sm-4">
+                                        <h3>Contact</h3>
+                                        <p>Do you have a question, feedback or a complaint? Let us help you find the right answer.</p>
+                                        <a class="btn btn-secondary contact-us" href="/help-and-support/contact-us">Contact us</a>
+                                        <div class="social-links">
+                                            <a class="circle social-link-icon" href="https://facebook.com/aushomeaffairs" target="_blank">
+                                                <span class="icon-facebook" aria-hidden="true"></span>
+                                                <span class="sr-only">Facebook page for Australian Department of Home Affairs</span>
+                                            </a>
+                                            <a class="circle social-link-icon" href="https://au.linkedin.com/company/australian-department-of-home-affairs" target="_blank">
+                                                <span class="icon-linkedin" aria-hidden="true"></span>
+                                                <span class="sr-only">LinkedIn page for Australian Department of Home Affairs</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <h3>Home Affairs</h3> 
+                                        <nav>
+                                            <ul>
+                                                <li><a href="/">Home Affairs Portfolio</a></li>
+                                                <li><a target="_blank" href="https://www.abf.gov.au/">Australian Border Force</a></li>
+                                                <li><a href="/about-us/our-portfolios/national-security">National Security</a></li>
+                                                <li><a target="_blank" href="https://www.cisc.gov.au/">Transport Security</a></li>
+                                                <li><a href="/about-us/our-portfolios/emergency-management">Emergency Management</a></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <h3>What we do</h3> 
+                                        <nav>
+                                            <ul>
+                                                <li><a href="/about-us/who-we-are">Who we are</a></li>
+                                                <li><a href="/about-us/who-we-are/our-ministers">Our Ministers</a></li>
+                                                <li><a href="/help-and-support/departmental-forms/online-forms/contact-the-minister">Contact our Ministers</a></li>
+                                                <li><a href="/about-us/careers">Careers</a></li>
+                                                <li><a href="/help-and-support/contact-us">Contact us</a></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <div class="row spacer">
+                                    <div class="col-sm-12">
+                                        <div class="back-to-top text-right">
+                                            <a href="#top" class="btn btn-primary">Back to top <i class="material-icons"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer-links-bottom">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <p>The Department of Home Affairs acknowledges the Traditional Custodians of Country throughout Australia and their continuing connection to land, sea and community. We pay our respects to all Aboriginal and Torres Strait Islander peoples, their cultures and to their Elders past and present.</p>
+                                        <p><strong>Artwork:</strong> Protecting Country and People | Luke Penrith, July 2022</p>
+                                        <ul class="list-inline">
+                                            <li><a href="/access-and-accountability/using-our-website/web-privacy">Web privacy statement</a></li>
+                                            <li><a href="/access-and-accountability/using-our-website/accessibility">Accessibility of this website</a></li>
+                                            <li><a href="/access-and-accountability/freedom-of-information">Freedom of information</a></li>
+                                            <li><a href="/access-and-accountability/using-our-website/copyright-and-disclaimer">Copyright and disclaimer</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+
+            <!-- Start Search overlay -->
+            <div class="search-container">
+                <div class="search-overlay primary">
+                    <span class="sr-only">pop-up content starts</span>
+                    <button type="button" class="close-search-overlay-btn">
+                        <i class="material-icons">&#xE5CD;</i>
+                        <span id="ctlSearchBacklabel">Back</span>
+                    </button>
+
+                    <div class="search-overlay-content">
+                        <div class="search-form">
+                            <label for="search" class="sr-only">Search</label>
+                            <input type="search" name="search" class="search-input" placeholder="Search">
+                            <button type="button" class="search-submit">
+                                <span class="icon-search"></span>
+                            </button>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="search-metadata">
+                                    <h3 id="ctlSearchPopularLabel">Popular searches</h3>
+                                    <ul class="popular-searches">
+                                        <li><a href="#">Visa applications</a></li>
+                                        <li><a href="#">Border restrictions</a></li>
+                                        <li><a href="#">Citizenship test</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="search-metadata">
+                                    <h3 id="ctlSearchPreviousLabel">Your previous searches</h3>
+                                    <ul class="previous-searches">
+                                        <li><a href="#">Immigration</a></li>
+                                        <li><a href="#">Travel restrictions</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="sr-only">pop-up content ends</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Basic functionality for menu and search
+        $(document).ready(function() {
+            // Menu toggle
+            $('.menu-open-btn').click(function() {
+                $('.side-navigation').addClass('open');
+                $('.nav-overlay').addClass('open');
+            });
+            
+            $('.menu-close-btn, .nav-overlay').click(function() {
+                $('.side-navigation').removeClass('open');
+                $('.nav-overlay').removeClass('open');
+            });
+            
+            // Search toggle
+            $('.search-btn').click(function() {
+                $('.search-overlay').addClass('open');
+            });
+            
+            $('.close-search-overlay-btn').click(function() {
+                $('.search-overlay').removeClass('open');
+            });
+        });
+    </script>
+</body>
+</html>
