@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook - Clone</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f0f2f5;
+            color: #1c1e21;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #ffffff;
+            height: 56px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+        }
+        
+        .header-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo {
+            height: 40px;
+        }
+        
+        .search-bar {
+            background-color: #f0f2f5;
+            border-radius: 50px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+            margin-left: 8px;
+            flex: 1;
+            max-width: 240px;
+        }
+        
+        .search-bar input {
+            background: transparent;
+            border: none;
+            outline: none;
+            margin-left: 8px;
+            width: 100%;
+            font-size: 15px;
+        }
+        
+        .nav-icons {
+            display: flex;
+            margin-left: auto;
+        }
+        
+        .nav-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 4px;
+            cursor: pointer;
+        }
+        
+        .nav-icon:hover {
+            background-color: #f0f2f5;
+        }
+        
+        .profile-pic {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        /* Main Content */
+        .main-container {
+            display: flex;
+            max-width: 1200px;
+            margin: 56px auto 0;
+            padding: 20px 0;
+        }
+        
+        /* Left Sidebar */
+        .left-sidebar {
+            width: 280px;
+            padding-right: 8px;
+            position: fixed;
+            height: calc(100vh - 56px);
+            overflow-y: auto;
+        }
+        
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        .sidebar-item:hover {
+            background-color: #e4e6e9;
+        }
+        
+        .sidebar-item img {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            margin-right: 12px;
+        }
+        
+        .sidebar-item span {
+            font-size: 15px;
+            font-weight: 500;
+        }
+        
+        .divider {
+            height: 1px;
+            background-color: #ced0d4;
+            margin: 10px 0;
+        }
+        
+        .sidebar-header {
+            padding: 16px 0 8px 8px;
+            font-size: 17px;
+            color: #65676b;
+        }
+        
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin: 0 16px;
+            padding-top: 16px;
+            max-width: 680px;
+            margin-left: 280px;
+        }
+        
+        .story-section {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+        }
+        
+        .story {
+            min-width: 110px;
+            height: 200px;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        
+        .story-bg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .create-story {
+            background-color: #ffffff;
+        }
+        
+        .create-story-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.6));
+            padding: 8px;
+            color: white;
+            text-align: center;
+        }
+        
+        .post-creator {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 12px 16px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            margin-bottom: 16px;
+        }
+        
+        .post-input {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .post-input img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .post-input input {
+            flex: 1;
+            background-color: #f0f2f5;
+            border: none;
+            border-radius: 20px;
+            height: 40px;
+            padding: 0 16px;
+            font-size: 15px;
+            outline: none;
+        }
+        
+        .post-options {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 8px;
+            border-top: 1px solid #e4e6e9;
+        }
+        
+        .post-option {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .post-option:hover {
+            background-color: #f0f2f5;
+        }
+        
+        .post-option img {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+        }
+        
+        .post {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            margin-bottom: 16px;
+        }
+        
+        .post-header {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+        }
+        
+        .post-header img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .post-user {
+            flex: 1;
+        }
+        
+        .post-user-name {
+            font-weight: 600;
+            font-size: 15px;
+        }
+        
+        .post-time {
+            font-size: 13px;
+            color: #65676b;
+        }
+        
+        .post-content {
+            padding: 0 16px 12px;
+        }
+        
+        .post-text {
+            margin-bottom: 8px;
+            font-size: 15px;
+            line-height: 1.4;
+        }
+        
+        .post-image {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .post-stats {
+            display: flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-top: 1px solid #e4e6e9;
+            border-bottom: 1px solid #e4e6e9;
+            color: #65676b;
+            font-size: 15px;
+        }
+        
+        .post-actions {
+            display: flex;
+            justify-content: space-around;
+            padding: 4px 0;
+        }
+        
+        .post-action {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            flex: 1;
+            justify-content: center;
+        }
+        
+        .post-action:hover {
+            background-color: #f0f2f5;
+        }
+        
+        .post-action img {
+            width: 18px;
+            height: 18px;
+            margin-right: 8px;
+        }
+        
+        /* Right Sidebar */
+        .right-sidebar {
+            width: 360px;
+            padding-left: 16px;
+            position: fixed;
+            right: 0;
+            height: calc(100vh - 56px);
+            overflow-y: auto;
+        }
+        
+        .sponsored {
+            padding: 16px 0;
+        }
+        
+        .sponsored-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .sponsored-header h3 {
+            font-size: 17px;
+            color: #65676b;
+        }
+        
+        .sponsored-item {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        .sponsored-item:hover {
+            background-color: #e4e6e9;
+        }
+        
+        .sponsored-item img {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-right: 12px;
+        }
+        
+        .sponsored-info h4 {
+            font-size: 15px;
+            font-weight: 500;
+        }
+        
+        .sponsored-info p {
+            font-size: 13px;
+            color: #65676b;
+        }
+        
+        .birthdays {
+            padding: 16px 0;
+        }
+        
+        .birthday-item {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+        }
+        
+        .birthday-item img {
+            width: 36px;
+            height: 36px;
+            margin-right: 8px;
+        }
+        
+        .contacts-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0 8px;
+        }
+        
+        .contacts-header h3 {
+            font-size: 17px;
+            color: #65676b;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        .contact-item:hover {
+            background-color: #e4e6e9;
+        }
+        
+        .contact-item img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 12px;
+        }
+        
+        .contact-item span {
+            font-size: 15px;
+            font-weight: 500;
+        }
+        
+        .online-status {
+            width: 8px;
+            height: 8px;
+            background-color: #31a24c;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            border: 2px solid #ffffff;
+        }
+        
+        .avatar-container {
+            position: relative;
+            width: fit-content;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <img class="logo" src="https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg" alt="Facebook Logo">
+            
+            <div class="search-bar">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#65676b" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+                <input type="text" placeholder="Search Facebook">
+            </div>
+            
+            <div class="nav-icons">
+                <div class="nav-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#1c1e21" viewBox="0 0 16 16">
+                        <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>
+                    </svg>
+                </div>
+                <div class="nav-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#1c1e21" viewBox="0 0 16 16">
+                        <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+                    </svg>
+                </div>
+                <div class="nav-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#1c1e21" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                    </svg>
+                </div>
+                <div class="nav-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#1c1e21" viewBox="0 0 16 16">
+                        <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+                    </svg>
+                </div>
+                <div class="nav-icon">
+                    <img class="profile-pic" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile">
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Left Sidebar -->
+        <div class="left-sidebar">
+            <div class="sidebar-item">
+                <img class="profile-pic" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile">
+                <span>John Doe</span>
+            </div>
+            <div class="sidebar-item">
+                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/-XF4FQcre_i.png" alt="Friends">
+                <span>Friends</span>
+            </div>
+            <div class="sidebar-item">
+                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/lVijPkTeN-r.png" alt="Groups">
+                <span>Groups</span>
+            </div>
+            <div class="sidebar-item">
+                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yZ/r/i7hepQ2OeZg.png" alt="Marketplace">
+                <span>Marketplace</span>
+            </div>
+            <div class="sidebar-item">
+                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/mk4dH3FK0jT.png" alt="Watch">
+                <span>Watch</span>
+            </div>
+            <div class="sidebar-item">
+                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yG/r/A1HlI2LVo58.png" alt="Memories">
+                <span>Memories</span>
+            </div>
+            <div class="sidebar-item">
+                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/lVijPkTeN-r.png" alt="Saved">
+                <span>Saved</span>
+            </div>
+            <div class="sidebar-item">
+                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/mk4dH3FK0jT.png" alt="Pages">
+                <span>Pages</span>
+            </div>
+            <div class="sidebar-item">
+                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yZ/r/i7hepQ2OeZg.png" alt="Events">
+                <span>Events</span>
+            </div>
+            <div class="sidebar-item">
+                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yG/r/A1HlI2LVo58.png" alt="Most Recent">
+                <span>Most Recent</span>
+            </div>
+            
+            <div class="divider"></div>
+            
+            <div class="sidebar-header">Your Shortcuts</div>
+            <div class="sidebar-item">
+                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Group 1">
+                <span>Travel Enthusiasts</span>
+            </div>
+            <div class="sidebar-item">
+                <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Group 2">
+                <span>Tech Developers</span>
+            </div>
+            <div class="sidebar-item">
+                <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Group 3">
+                <span>Cooking Club</span>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Stories -->
+            <div class="story-section">
+                <div class="story">
+                    <img class="story-bg" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Your Story">
+                    <div class="create-story-content">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#ffffff" viewBox="0 0 16 16">
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                        </svg>
+                        <div>Create Story</div>
+                    </div>
+                </div>
+                <div class="story">
+                    <img class="story-bg" src="https://source.unsplash.com/random/200x300" alt="Story 1">
+                    <div class="avatar-container" style="position: absolute; top: 8px; left: 8px;">
+                        <img class="profile-pic" src="https://randomuser.me/api/portraits/women/44.jpg" alt="User">
+                    </div>
+                    <div style="position: absolute; bottom: 8px; left: 8px; color: white; font-weight: 500;">Sarah Johnson</div>
+                </div>
+                <div class="story">
+                    <img class="story-bg" src="https://source.unsplash.com/random/200x301" alt="Story 2">
+                    <div class="avatar-container" style="position: absolute; top: 8px; left: 8px;">
+                        <img class="profile-pic" src="https://randomuser.me/api/portraits/men/22.jpg" alt="User">
+                    </div>
+                    <div style="position: absolute; bottom: 8px; left: 8px; color: white; font-weight: 500;">Mike Peterson</div>
+                </div>
+                <div class="story">
+                    <img class="story-bg" src="https://source.unsplash.com/random/200x302" alt="Story 3">
+                    <div class="avatar-container" style="position: absolute; top: 8px; left: 8px;">
+                        <img class="profile-pic" src="https://randomuser.me/api/portraits/women/33.jpg" alt="User">
+                    </div>
+                    <div style="position: absolute; bottom: 8px; left: 8px; color: white; font-weight: 500;">Emma Wilson</div>
+                </div>
+                <div class="story">
+                    <img class="story-bg" src="https://source.unsplash.com/random/200x303" alt="Story 4">
+                    <div class="avatar-container" style="position: absolute; top: 8px; left: 8px;">
+                        <img class="profile-pic" src="https://randomuser.me/api/portraits/men/45.jpg" alt="User">
+                    </div>
+                    <div style="position: absolute; bottom: 8px; left: 8px; color: white; font-weight: 500;">David Kim</div>
+                </div>
+            </div>
+            
+            <!-- Create Post -->
+            <div class="post-creator">
+                <div class="post-input">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile">
+                    <input type="text" placeholder="What's on your mind, John?">
+                </div>
+                <div class="post-options">
+                    <div class="post-option">
+                        <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y7/r/Ivw7nhRtXyo.png" alt="Live Video">
+                        <span>Live Video</span>
+                    </div>
+                    <div class="post-option">
+                        <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y5/r/4lSJS9OHk1J.png" alt="Photo/Video">
+                        <span>Photo/Video</span>
+                    </div>
+                    <div class="post-option">
+                        <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yk/r/yMDS19UDsWe.png" alt="Feeling/Activity">
+                        <span>Feeling/Activity</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Posts -->
+            <div class="post">
+                <div class="post-header">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Profile">
+                    <div class="post-user">
+                        <div class="post-user-name">Sarah Johnson</div>
+                        <div class="post-time">Yesterday at 3:45 PM · <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#65676b" viewBox="0 0 16 16">
+                            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                        </svg></div>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <div class="post-text">
+                        Just got back from an amazing trip to the mountains! The views were breathtaking and the air was so fresh. Can't wait to go back again soon! 🏔️
+                    </div>
+                    <img class="post-image" src="https://source.unsplash.com/random/800x600?mountain" alt="Post Image">
+                </div>
+                <div class="post-stats">
+                    <div>125 Likes</div>
+                    <div style="margin-left: auto;">24 Comments · 5 Shares</div>
+                </div>
+                <div class="post-actions">
+                    <div class="post-action">
+                        <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/Ya3zC4wDZx-.png" alt="Like">
+                        <span>Like</span>
+                    </div>
+                    <div class="post-action">
+                        <img src="https://static.xx.fbcdn.net/rsrc.php/v3/ys/r/9BDqQflVfXI.png" alt="Comment">
+                        <span>Comment</span>
+                    </div>
+                    <div class="post-action">
+                        <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/6C788V7XaQZ.png" alt="Share">
+                        <span>Share</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post">
+                <div class="post-header">
+                    <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Profile">
+                    <div class="post-user">
+                        <div class="post-user-name">Mike Peterson</div>
+                        <div class="post-time">Monday at 10:12 AM · <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#65676b" viewBox="0 0 16 16">
+                            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                        </svg></div>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <div class="post-text">
+                        Check out this new recipe I tried over the weekend! Homemade pasta with a creamy mushroom sauce. It turned out better than I expected! 🍝
+                    </div>
+                    <img class="post-image" src="https://source.unsplash.com/random/800x600?pasta" alt="Post Image">
+                </div>
+                <div class="post-stats">
+                    <div>89 Likes</div>
+                    <div style="margin-left: auto;">15 Comments · 2 Shares</div>
+                </div>
+                <div class="post-actions">
+                    <div class="post-action">
+                        <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/Ya3zC4wDZx-.png" alt="Like">
+                        <span>Like</span>
+                    </div>
+                    <div class="post-action">
+                        <img src="https://static.xx.fbcdn.net/rsrc.php/v3/ys/r/9BDqQflVfXI.png" alt="Comment">
+                        <span>Comment</span>
+                    </div>
+                    <div class="post-action">
+                        <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/6C788V7XaQZ.png" alt="Share">
+                        <span>Share</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right Sidebar -->
+        <div class="right-sidebar">
+            <div class="sponsored">
+                <div class="sponsored-header">
+                    <h3>Sponsored</h3>
+                </div>
+                <div class="sponsored-item">
+                    <img src="https://source.unsplash.com/random/200x200?product" alt="Sponsored">
+                    <div class="sponsored-info">
+                        <h4>Summer Sale - Up to 50% Off</h4>
+                        <p>example.com</p>
+                    </div>
+                </div>
+                <div class="sponsored-item">
+                    <img src="https://source.unsplash.com/random/200x201?travel" alt="Sponsored">
+                    <div class="sponsored-info">
+                        <h4>Travel Deals - Book Now!</h4>
+                        <p>travelsite.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="birthdays">
+                <div class="sidebar-header">Birthdays</div>
+                <div class="birthday-item">
+                    <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y2/r/9gh1QIkOQzG.png" alt="Gift">
+                    <div>
+                        <strong>Emma Wilson</strong> and <strong>2 others</strong> have birthdays today.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contacts">
+                <div class="contacts-header">
+                    <h3>Contacts</h3>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#65676b" viewBox="0 0 16 16">
+                            <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#65676b" viewBox="0 0 16 16">
+                            <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="avatar-container">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Contact">
+                        <div class="online-status"></div>
+                    </div>
+                    <span>Sarah Johnson</span>
+                </div>
+                <div class="contact-item">
+                    <div class="avatar-container">
+                        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Contact">
+                        <div class="online-status"></div>
+                    </div>
+                    <span>Mike Peterson</span>
+                </div>
+                <div class="contact-item">
+                    <div class="avatar-container">
+                        <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Contact">
+                        <div class="online-status"></div>
+                    </div>
+                    <span>Emma Wilson</span>
+                </div>
+                <div class="contact-item">
+                    <div class="avatar-container">
+                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Contact">
+                        <div class="online-status"></div>
+                    </div>
+                    <span>David Kim</span>
+                </div>
+                <div class="contact-item">
+                    <div class="avatar-container">
+                        <img src="https://randomuser.me/api/portraits/women/55.jpg" alt="Contact">
+                        <div class="online-status"></div>
+                    </div>
+                    <span>Lisa Chen</span>
+                </div>
+                <div class="contact-item">
+                    <div class="avatar-container">
+                        <img src="https://randomuser.me/api/portraits/men/66.jpg" alt="Contact">
+                        <div class="online-status"></div>
+                    </div>
+                    <span>Robert Taylor</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
