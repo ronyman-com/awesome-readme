@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KDO - Khmer Democracy Organization</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a5276;
+            --secondary: #e74c3c;
+            --accent: #f39c12;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #333;
+            --text-light: #7f8c8d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--secondary);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+        
+        .logo-text h1 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .logo-text p {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+        
+        .social-header {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-header a {
+            color: var(--text-light);
+            font-size: 1.2rem;
+        }
+        
+        .social-header a:hover {
+            color: var(--primary);
+        }
+        
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            position: relative;
+            margin-left: 20px;
+        }
+        
+        .nav-links a {
+            color: var(--text);
+            font-weight: 500;
+            padding: 10px 0;
+            display: block;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            z-index: 1;
+            border-radius: 5px;
+            top: 100%;
+            left: 0;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .dropdown-content a {
+            padding: 12px 16px;
+            display: block;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Banner */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://scontent.fmel8-1.fna.fbcdn.net/v/t39.30808-6/472128928_586363634122280_5023019766984813977_n.png?stp=dst-png_s960x960&_nc_cat=101&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=zMgWzgeqXAkQ7kNvwED6TSM&_nc_oc=AdkfCpAfGIHLcvp_TkPlWJR2OC7OOxAY2uueY3Yc4V_aCGD7Uc8GGYipsirxd8b9aKgtNnwcwXX7Qq3RXMrb-gC5&_nc_zt=23&_nc_ht=scontent.fmel8-1.fna&_nc_gid=WOp30gbLDBDYWoKPmBwO9g&oh=00_AfEGLZMiFY7fAtUzAtSvC1ZurMzHINEFltCd8f-4i2sAjg&oe=68123A30');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #c0392b;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* Social Feeds Section */
+        .social-feeds {
+            padding: 60px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
+        .feeds-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .feed-box {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .feed-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .feed-header {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .feed-header img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        .feed-header h3 {
+            font-size: 1rem;
+        }
+        
+        .feed-header .social-icon {
+            margin-left: auto;
+            font-size: 1.2rem;
+        }
+        
+        .twitter .social-icon {
+            color: #1DA1F2;
+        }
+        
+        .facebook .social-icon {
+            color: #1877F2;
+        }
+        
+        .youtube .social-icon {
+            color: #FF0000;
+        }
+        
+        .feed-content {
+            padding: 15px;
+        }
+        
+        .feed-text {
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .feed-image {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        
+        .feed-video {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+        
+        .feed-video iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+        }
+        
+        .feed-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-light);
+            font-size: 0.8rem;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 60px 0;
+            background-color: var(--light);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .about-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .about-text p {
+            margin-bottom: 15px;
+        }
+        
+        /* Sponsors Section */
+        .sponsors {
+            padding: 60px 0;
+            background-color: white;
+            text-align: center;
+        }
+        
+        .sponsors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .sponsor-item {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .sponsor-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .sponsor-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+        
+        .sponsor-item h4 {
+            font-size: 1rem;
+            color: var(--primary);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #bdc3c7;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .footer-contact p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .footer-contact i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-social a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-5px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #bdc3c7;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                order: -1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                padding: 20px;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 0;
+                padding: 10px 0;
+                border-bottom: 1px solid #eee;
+            }
+            
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                display: none;
+                padding-left: 20px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .header-top {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+                justify-content: center;
+            }
+            
+            .social-header {
+                justify-content: center;
+            }
+            
+            .hero {
+                height: 300px;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade {
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+        
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+        
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <img src="https://scontent.fmel8-1.fna.fbcdn.net/v/t39.30808-1/467312301_556922527066391_675850877240303934_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=104&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=RTrzu-9QgTgQ7kNvwGmat-C&_nc_oc=Admnqdp2MbqIiiUBPdxfqSpeM07-oq25p_KK2_FgaPNxHsXBcDMPQW4Zo12qtyIgAbLSxRQUjGSGFDsicm_vVmo5&_nc_zt=24&_nc_ht=scontent.fmel8-1.fna&_nc_gid=WOp30gbLDBDYWoKPmBwO9g&oh=00_AfE7qe87oJck3AZW6U9PrT1BhAI1d7NU8SQien9WHhp_dA&oe=68123262" alt="KDO Logo">
+                    <div class="logo-text">
+                        <h1>KDO</h1>
+                        <p>Khmer Democracy Organization</p>
+                    </div>
+                </div>
+                <div class="social-header">
+                    <a href="https://www.facebook.com/democracy.khmer.org" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://x.com/KdoAustralia" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.youtube.com/@khmer-democracy" target="_blank"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <nav>
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#" class="active">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#">About <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="#">Our Mission</a>
+                            <a href="#">Our Team</a>
+                            <a href="#">Our History</a>
+                        </div>
+                    </li>
+                    <li><a href="#">Programs</a></li>
+                    <li><a href="#">News</a></li>
+                    <li><a href="#">Get Involved</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Banner -->
+    <section class="hero">
+        <div class="hero-content animate-fade">
+            <h2>Empowering Cambodian Democracy</h2>
+            <p>Join us in our mission to promote democracy, human rights, and social justice in Cambodia and beyond.</p>
+            <a href="#" class="btn">Learn More</a>
+        </div>
+    </section>
+    
+    <!-- Social Feeds Section -->
+    <section class="social-feeds">
+        <div class="container">
+            <div class="section-title">
+                <h2>Latest Updates</h2>
+            </div>
+            
+            <div class="feeds-container">
+                <!-- Twitter Feed -->
+                <div class="feed-box twitter animate-fade delay-1">
+                    <div class="feed-header">
+                        <img src="https://pbs.twimg.com/profile_images/1878763842643054592/9XQYJYJ9_400x400.jpg" alt="Twitter Profile">
+                        <h3>KDO Australia</h3>
+                        <div class="social-icon"><i class="fab fa-twitter"></i></div>
+                    </div>
+                    <div class="feed-content">
+                        <div class="feed-text">
+                            <p>Our latest statement on the current political situation in Cambodia. Democracy must prevail! #Cambodia #Democracy</p>
+                        </div>
+                        <div class="feed-image">
+                            <img src="https://pbs.twimg.com/media/GLQ3HnXb0AAq8QJ?format=jpg&name=medium" alt="Twitter post image">
+                        </div>
+                        <div class="feed-meta">
+                            <span><i class="far fa-heart"></i> 42</span>
+                            <span>2 hours ago</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Facebook Feed -->
+                <div class="feed-box facebook animate-fade delay-2">
+                    <div class="feed-header">
+                        <img src="https://scontent.fmel8-1.fna.fbcdn.net/v/t39.30808-1/467312301_556922527066391_675850877240303934_n.jpg?stp=dst-jpg_s200x200&_nc_cat=104&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=RTrzu-9QgTgQ7kNvwGmat-C&_nc_oc=Admnqdp2MbqIiiUBPdxfqSpeM07-oq25p_KK2_FgaPNxHsXBcDMPQW4Zo12qtyIgAbLSxRQUjGSGFDsicm_vVmo5&_nc_zt=24&_nc_ht=scontent.fmel8-1.fna&_nc_gid=WOp30gbLDBDYWoKPmBwO9g&oh=00_AfE7qe87oJck3AZW6U9PrT1BhAI1d7NU8SQien9WHhp_dA&oe=68123262" alt="Facebook Profile">
+                        <h3>Khmer Democracy Organization</h3>
+                        <div class="social-icon"><i class="fab fa-facebook-f"></i></div>
+                    </div>
+                    <div class="feed-content">
+                        <div class="feed-text">
+                            <p>Join our upcoming webinar on "The Future of Democracy in Southeast Asia" featuring prominent activists and scholars.</p>
+                        </div>
+                        <div class="feed-image">
+                            <img src="https://scontent.fmel8-1.fna.fbcdn.net/v/t39.30808-6/472128928_586363634122280_5023019766984813977_n.png?_nc_cat=101&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=zMgWzgeqXAkQ7kNvwED6TSM&_nc_zt=23&_nc_ht=scontent.fmel8-1.fna&_nc_gid=WOp30gbLDBDYWoKPmBwO9g&oh=00_AfEGLZMiFY7fAtUzAtSvC1ZurMzHINEFltCd8f-4i2sAjg&oe=68123A30" alt="Facebook post image">
+                        </div>
+                        <div class="feed-meta">
+                            <span><i class="far fa-thumbs-up"></i> 128</span>
+                            <span>1 day ago</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- YouTube Feed -->
+                <div class="feed-box youtube animate-fade delay-3">
+                    <div class="feed-header">
+                        <img src="https://yt3.googleusercontent.com/oIF-GddgX3Aw_WqlmBKFLX55lwr0dF0OkbebGKBpSnPNXnkOkYIMOMk9Oeg9oUGi5T8Hataadko=w1707-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj" alt="YouTube Channel">
+                        <h3>Khmer Democracy</h3>
+                        <div class="social-icon"><i class="fab fa-youtube"></i></div>
+                    </div>
+                    <div class="feed-content">
+                        <div class="feed-text">
+                            <p>New video: Interview with Cambodian human rights activist about the current challenges facing civil society.</p>
+                        </div>
+                        <div class="feed-video">
+                            <iframe src="https://www.youtube.com/embed/example" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <div class="feed-meta">
+                            <span><i class="far fa-eye"></i> 1.2K</span>
+                            <span>3 days ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>About KDO</h3>
+                    <p>The Khmer Democracy Organization (KDO) is a non-profit organization dedicated to promoting democracy, human rights, and social justice in Cambodia and among Cambodian communities worldwide.</p>
+                    <p>Founded by Cambodian activists and diaspora members, KDO works to raise awareness about democratic values, provide civic education, and support pro-democracy movements in Cambodia.</p>
+                    <p>Our organization brings together experts, activists, and community members to advocate for positive change and empower Cambodian citizens to participate in the democratic process.</p>
+                    <a href="#" class="btn">Read More</a>
+                </div>
+                <div class="about-image">
+                    <img src="https://scontent.fmel8-1.fna.fbcdn.net/v/t39.30808-6/472128928_586363634122280_5023019766984813977_n.png?_nc_cat=101&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=zMgWzgeqXAkQ7kNvwED6TSM&_nc_zt=23&_nc_ht=scontent.fmel8-1.fna&_nc_gid=WOp30gbLDBDYWoKPmBwO9g&oh=00_AfEGLZMiFY7fAtUzAtSvC1ZurMzHINEFltCd8f-4i2sAjg&oe=68123A30" alt="About KDO">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sponsors Section -->
+    <section class="sponsors">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Supporters</h2>
+            </div>
+            
+            <div class="sponsors-grid">
+                <div class="sponsor-item">
+                    <img src="https://via.placeholder.com/150" alt="Supporter 1">
+                    <h4>Global Democracy Fund</h4>
+                </div>
+                <div class="sponsor-item">
+                    <img src="https://via.placeholder.com/150" alt="Supporter 2">
+                    <h4>Human Rights Watch</h4>
+                </div>
+                <div class="sponsor-item">
+                    <img src="https://via.placeholder.com/150" alt="Supporter 3">
+                    <h4>Freedom House</h4>
+                </div>
+                <div class="sponsor-item">
+                    <img src="https://via.placeholder.com/150" alt="Supporter 4">
+                    <h4>Asian Democracy Network</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About KDO</h3>
+                    <p>The Khmer Democracy Organization is committed to promoting democratic values and human rights in Cambodia through education, advocacy, and community engagement.</p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/democracy.khmer.org" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://x.com/KdoAustralia" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.youtube.com/@khmer-democracy" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Programs</a></li>
+                        <li><a href="#">Latest News</a></li>
+                        <li><a href="#">Get Involved</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-map-marker-alt"></i> Melbourne, Australia</p>
+                        <p><i class="fas fa-envelope"></i> info@kdo.org</p>
+                        <p><i class="fas fa-phone"></i> +61 123 456 789</p>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for the latest updates and news.</p>
+                    <form>
+                        <input type="email" placeholder="Your Email" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: none;">
+                        <button type="submit" class="btn" style="width: 100%;">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Khmer Democracy Organization (KDO). All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Animation on scroll
+        const animateElements = document.querySelectorAll('.animate-fade');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        animateElements.forEach(element => {
+            element.style.opacity = 0;
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>
